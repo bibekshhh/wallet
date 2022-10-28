@@ -4,7 +4,9 @@ const config = process.env;
 
 const verifyToken = (req, res, next) => {
     //receive tokens
-    const token = req.body.token || req.query.token || req.headers['x-access-origin'];
+    let token = req.body.token || req.query.token || req.headers['x-access-origin'];
+    //replace Bearer from token string
+    token = token.split(" ")[1]
 
     //validating tokens
     if (!token) {
